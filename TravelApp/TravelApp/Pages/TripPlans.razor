@@ -7,7 +7,7 @@
 <ul>
     @foreach (var plan in _tripPlans)
     {
-        <li>@plan.Title - @plan.Destination (@plan.StartDate.ToShortDateString() to @plan.EndDate.ToString())</li>
+        <li>@plan.Title - @plan.Destination (@plan.StartDate.ToShortDateString() to @plan.EndDate.ToShortDateString())</li>
     }
 </ul>
 

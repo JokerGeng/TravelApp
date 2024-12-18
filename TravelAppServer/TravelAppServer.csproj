@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TravelApp.Models\TravelApp.Models.csproj" />
-    <ProjectReference Include="..\TravelApp\TravelApp.Shared\TravelApp.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

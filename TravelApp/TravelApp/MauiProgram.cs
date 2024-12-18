@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using TravelApp.Services;
-using TravelApp.Shared.Services;
 
 namespace TravelApp
 {

@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelApp", "TravelApp\TravelApp\TravelApp.csproj", "{178550B2-2267-4A28-8795-74FBE39DECD8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelApp.Shared", "TravelApp\TravelApp.Shared\TravelApp.Shared.csproj", "{ADCF6D4D-7ADB-4C9F-A814-60AE8F1A40B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAppServer", "TravelAppServer\TravelAppServer.csproj", "{C8EED4E3-2926-4001-B4E8-E443612FE9D7}"
 EndProject
@@ -21,10 +19,6 @@ Global
 		{178550B2-2267-4A28-8795-74FBE39DECD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{178550B2-2267-4A28-8795-74FBE39DECD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{178550B2-2267-4A28-8795-74FBE39DECD8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ADCF6D4D-7ADB-4C9F-A814-60AE8F1A40B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ADCF6D4D-7ADB-4C9F-A814-60AE8F1A40B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ADCF6D4D-7ADB-4C9F-A814-60AE8F1A40B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ADCF6D4D-7ADB-4C9F-A814-60AE8F1A40B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8EED4E3-2926-4001-B4E8-E443612FE9D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8EED4E3-2926-4001-B4E8-E443612FE9D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8EED4E3-2926-4001-B4E8-E443612FE9D7}.Release|Any CPU.ActiveCfg = Release|Any CPU

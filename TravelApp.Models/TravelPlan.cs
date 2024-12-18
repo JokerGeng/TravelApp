@@ -18,7 +18,7 @@ namespace TravelApp.Models
         [Required]
         public DateTime StartDate { get; set; }
 
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public string Transportation { get; set; } // Car, Train, Plane, etc.
         public string Accommodation { get; set; } // Hotel, Airbnb, etc
