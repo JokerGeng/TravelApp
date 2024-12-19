@@ -1,30 +1,44 @@
 ﻿@page "/register"
+@inject NavigationManager Navigation
 @inject HttpClient Http;
 
-<EditForm Model="_registerModel" OnValidSubmit="RegisterUser">
+<h3>Register</h3>
+
+<EditForm Model="registrationModel" OnValidSubmit="HandleRegistration">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <InputText @bind-Value="_registerModel.Username" placeholder="Username" />
-    <InputText @bind-Value="_registerModel.Email" placeholder="Email" />
-    <InputText @bind-Value="_registerModel.Password" type="password" placeholder="Password" />
+    <InputText @bind-Value="registrationModel.Email" placeholder="Email" />
+    <InputText @bind-Value="registrationModel.Phone" placeholder="Phone" />
+    <InputText @bind-Value="registrationModel.Password" placeholder="Password" type="password" />
+    <InputText @bind-Value="registrationModel.VerificationCode" placeholder="Verification Code" />
 
     <button type="submit">Register</button>
 </EditForm>
 
 @code {
-    private RegisterDto _registerModel = new RegisterDto();
 
-    private async Task RegisterUser()
+    private RegistrationModel registrationModel = new();
+
+    private async Task HandleRegistration()
     {
-        var response = await Http.PostAsJsonAsync("api/auth/register", _registerModel);
+        var response = await Http.PostAsJsonAsync("api/auth/register-email", registrationModel);
         if (response.IsSuccessStatusCode)
         {
-            // Handle success (e.g., redirect to login page)
+            var token = await response.Content.ReadAsStringAsync();
+            // Handle successful registration
         }
         else
         {
-            // Handle error (e.g., show error message)
+            // Handle error
         }
+    }
+
+    private class RegistrationModel
+    {
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Password { get; set; }
+        public string VerificationCode { get; set; }
     }
 }

@@ -4,14 +4,12 @@ namespace TravelApp.Models
 {
     public class ApplicationDbContext: DbContext
     {
+        public DbSet<User> Users { get; set; }
+        public DbSet<TripPlan> TripPlans { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-
-        // DbSet 代表数据库中的表
-        public DbSet<User> Users { get; set; }
-        public DbSet<TripPlan> TripPlans { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +20,5 @@ namespace TravelApp.Models
                 .HasIndex(u => u.Email)
                 .IsUnique();
         }
-
     }
 }

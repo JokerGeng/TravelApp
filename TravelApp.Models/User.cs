@@ -22,5 +22,8 @@ namespace TravelApp.Models
         public string PasswordHash { get; set; } // Password stored as a hash for security
 
         public string Role { get; set; } = "User"; // Default role
+        public DateTime CreatedAt { get; set; }
+        public object Phone { get; set; }
+        public bool IsActive { get; set; }
     }
 }
