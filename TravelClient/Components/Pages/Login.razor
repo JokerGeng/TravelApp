@@ -1,0 +1,112 @@
+﻿@page "/login"
+@using System.ComponentModel.DataAnnotations
+<div class="login-container">
+    <h2>Welcome Back!</h2>
+    <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <InputText @bind-Value="loginModel.Email" placeholder="Email Address" class="input" type=email />
+            <ValidationMessage For="@(()=>loginModel.Email)" />
+        </div>
+        <div class="form-group">
+            <InputText @bind-Value="loginModel.Password" placeholder="Password" class="input" type="password" />
+            <ValidationMessage For="@(()=>loginModel.Password)" />
+        </div>
+        <button type="submit" class="button">Login</button>
+    </EditForm>
+    <p>
+        Don't have an account?
+        <NavLink class="nav-link" href="/register">
+            <span>Register Now</span>
+        </NavLink>
+    </p>
+</div>
+
+@code {
+    private LoginModel loginModel = new LoginModel();
+
+    private async Task HandleLogin()
+    {
+        // Perform login logic here
+        // For example, call an API to authenticate the user
+        var isAuthenticated = true; // Placeholder for actual authentication logic
+
+        if (isAuthenticated)
+        {
+
+        }
+        else
+        {
+            // Show error message
+        }
+    }
+
+    private class LoginModel
+    {
+        [Required]
+        public string Email { get; set; } = string.Empty;
+        [Required]
+        public string Password { get; set; } = string.Empty;
+    }
+}
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #00c6ff, #0072ff);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 320px;
+    }
+
+    .login-container h2 {
+        margin-bottom: 20px;
+        color: #333333;
+    }
+
+    .input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>

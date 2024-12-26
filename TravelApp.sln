@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113
+VisualStudioVersion = 17.12.35527.113 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelApp", "TravelApp\TravelApp\TravelApp.csproj", "{178550B2-2267-4A28-8795-74FBE39DECD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelClient", "TravelClient\TravelClient.csproj", "{11368A1D-D340-43C3-A5D7-74A4B14910F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAppServer", "TravelAppServer\TravelAppServer.csproj", "{C8EED4E3-2926-4001-B4E8-E443612FE9D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelApp.Models", "TravelApp.Models\TravelApp.Models.csproj", "{4F6F802E-B47B-47D3-BF90-3DC366605482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelApp.Models", "TravelApp.Models\TravelApp.Models.csproj", "{CAA9AB5B-E98E-4279-8BA1-9EB53D66854B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAppServer", "TravelAppServer\TravelAppServer.csproj", "{BE1EAC8D-306A-43DC-B03B-B04B2F49EA1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{178550B2-2267-4A28-8795-74FBE39DECD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{178550B2-2267-4A28-8795-74FBE39DECD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{178550B2-2267-4A28-8795-74FBE39DECD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{178550B2-2267-4A28-8795-74FBE39DECD8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8EED4E3-2926-4001-B4E8-E443612FE9D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8EED4E3-2926-4001-B4E8-E443612FE9D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8EED4E3-2926-4001-B4E8-E443612FE9D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8EED4E3-2926-4001-B4E8-E443612FE9D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAA9AB5B-E98E-4279-8BA1-9EB53D66854B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAA9AB5B-E98E-4279-8BA1-9EB53D66854B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAA9AB5B-E98E-4279-8BA1-9EB53D66854B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAA9AB5B-E98E-4279-8BA1-9EB53D66854B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11368A1D-D340-43C3-A5D7-74A4B14910F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11368A1D-D340-43C3-A5D7-74A4B14910F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11368A1D-D340-43C3-A5D7-74A4B14910F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11368A1D-D340-43C3-A5D7-74A4B14910F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F6F802E-B47B-47D3-BF90-3DC366605482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F6F802E-B47B-47D3-BF90-3DC366605482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F6F802E-B47B-47D3-BF90-3DC366605482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F6F802E-B47B-47D3-BF90-3DC366605482}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE1EAC8D-306A-43DC-B03B-B04B2F49EA1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE1EAC8D-306A-43DC-B03B-B04B2F49EA1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE1EAC8D-306A-43DC-B03B-B04B2F49EA1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE1EAC8D-306A-43DC-B03B-B04B2F49EA1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

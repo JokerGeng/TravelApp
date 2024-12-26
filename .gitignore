@@ -2,11 +2,10 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/TravelClient/bin/Debug
-/TravelClient/obj
-/TravelAppServer/obj
-/TravelAppServer/bin/Debug/net9.0
-/TravelApp.Models/bin/Debug/net9.0
-/TravelApp.Models/obj/Debug/net9.0
-/TravelApp.Models/obj
-/.vs/TravelApp
+/TravelClient/bin/
+/TravelClient/obj/
+/TravelAppServer/obj/
+/TravelAppServer/bin/
+/TravelApp.Models/bin/
+/TravelApp.Models/obj/
+/.vs/

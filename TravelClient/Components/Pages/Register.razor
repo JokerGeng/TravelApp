@@ -1,0 +1,43 @@
+﻿@page "/register"
+@inject HttpClient Http;
+
+<h3>Register</h3>
+
+<EditForm Model="registrationModel" OnValidSubmit="HandleRegistration">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText @bind-Value="registrationModel.Email" placeholder="Email" />
+    <InputText @bind-Value="registrationModel.Phone" placeholder="Phone" />
+    <InputText @bind-Value="registrationModel.Password" placeholder="Password" type="password" />
+    <InputText @bind-Value="registrationModel.VerificationCode" placeholder="Verification Code" />
+
+    <button type="submit">Register</button>
+</EditForm>
+
+@code {
+
+    private RegistrationModel registrationModel = new();
+
+    private async Task HandleRegistration()
+    {
+        var response = await Http.PostAsJsonAsync("api/auth/register-email", registrationModel);
+        if (response.IsSuccessStatusCode)
+        {
+            var token = await response.Content.ReadAsStringAsync();
+            // Handle successful registration
+        }
+        else
+        {
+            // Handle error
+        }
+    }
+
+    private class RegistrationModel
+    {
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Password { get; set; }
+        public string VerificationCode { get; set; }
+    }
+}
