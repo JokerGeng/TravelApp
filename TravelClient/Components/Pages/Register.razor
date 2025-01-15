@@ -1,34 +1,53 @@
 ﻿@page "/register"
 @using System.ComponentModel.DataAnnotations
+@inject HttpClient Http;
 
 <h3>Register</h3>
-
-<EditForm Model="registrationModel" OnValidSubmit="HandleRegistration">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <InputText @bind-Value="registrationModel.Email" placeholder="Email" />
-    <InputText @bind-Value="registrationModel.Password" placeholder="Password" type="password" />
-
-    <button type="submit">Register</button>
-</EditForm>
+<div class="login-container">
+    <EditForm Model="registrationModel" OnValidSubmit="HandleRegistration">
+        <DataAnnotationsValidator />
+        <div class="form-group">
+            <InputText @bind-Value="registrationModel.Email" placeholder="Email Address" class="input" type=email />
+            <ValidationMessage For="@(()=>registrationModel.Email)" />
+        </div>
+        <div class="form-group">
+            <InputText @bind-Value="registrationModel.Password" placeholder="Password" class="input" type="password" />
+            <ValidationMessage For="@(()=>registrationModel.Password)" />
+        </div>
+        <button type="submit" class="button">Register</button>
+        <p style="color:red;">@errorMessage</p>
+    </EditForm>
+    <NavLink class="nav-link" href="/">
+        <span>Already have a account?</span>
+    </NavLink>
+</div>
 
 @code {
 
-    private RegistrationModel registrationModel = new();
+    private RegistrationModel registrationModel = new(); 
+    private string errorMessage = string.Empty;
 
     private async Task HandleRegistration()
     {
-        // var response = await Http.PostAsJsonAsync("api/auth/register-email", registrationModel);
-        // if (response.IsSuccessStatusCode)
-        // {
-        //     var token = await response.Content.ReadAsStringAsync();
-        //     // Handle successful registration
-        // }
-        // else
-        // {
-        //     // Handle error
-        // }
+        try
+        {
+            Http.Timeout = new TimeSpan(0, 0, 5);
+            var response = await Http.PostAsJsonAsync("api/auth/register-email", registrationModel);
+            if (response.IsSuccessStatusCode)
+            {
+                var token = await response.Content.ReadAsStringAsync();
+                // Handle successful registration
+            }
+            else
+            {
+                errorMessage = "Register error!";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+
     }
 
     private class RegistrationModel
@@ -39,3 +58,63 @@
         public string Password { get; set; }
     }
 }
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #00c6ff, #0072ff);
+        height: 100vh;
+        /* display: flex; */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 320px;
+    }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+    .input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
