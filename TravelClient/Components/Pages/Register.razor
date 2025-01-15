@@ -1,5 +1,5 @@
 ﻿@page "/register"
-@inject HttpClient Http;
+@using System.ComponentModel.DataAnnotations
 
 <h3>Register</h3>
 
@@ -8,9 +8,7 @@
     <ValidationSummary />
 
     <InputText @bind-Value="registrationModel.Email" placeholder="Email" />
-    <InputText @bind-Value="registrationModel.Phone" placeholder="Phone" />
     <InputText @bind-Value="registrationModel.Password" placeholder="Password" type="password" />
-    <InputText @bind-Value="registrationModel.VerificationCode" placeholder="Verification Code" />
 
     <button type="submit">Register</button>
 </EditForm>
@@ -21,23 +19,23 @@
 
     private async Task HandleRegistration()
     {
-        var response = await Http.PostAsJsonAsync("api/auth/register-email", registrationModel);
-        if (response.IsSuccessStatusCode)
-        {
-            var token = await response.Content.ReadAsStringAsync();
-            // Handle successful registration
-        }
-        else
-        {
-            // Handle error
-        }
+        // var response = await Http.PostAsJsonAsync("api/auth/register-email", registrationModel);
+        // if (response.IsSuccessStatusCode)
+        // {
+        //     var token = await response.Content.ReadAsStringAsync();
+        //     // Handle successful registration
+        // }
+        // else
+        // {
+        //     // Handle error
+        // }
     }
 
     private class RegistrationModel
     {
+        [Required]
         public string Email { get; set; }
-        public string Phone { get; set; }
+        [Required]
         public string Password { get; set; }
-        public string VerificationCode { get; set; }
     }
 }

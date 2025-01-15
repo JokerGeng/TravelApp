@@ -1,5 +1,5 @@
 ﻿@page "/tripplans"
-@inject HttpClient Http;
+@* @inject HttpClient Http; *@
 
 <PageTitle>Trip Plans</PageTitle>
 
@@ -28,15 +28,15 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _tripPlans = await Http.GetFromJsonAsync<List<TripPlan>>("api/tripplans");
+        // _tripPlans = await Http.GetFromJsonAsync<List<TripPlan>>("api/tripplans");
     }
 
     private async Task AddPlan()
     {
-        var response = await Http.PostAsJsonAsync("api/tripplans", _newPlan);
-        if (response.IsSuccessStatusCode)
-        {
-            _tripPlans.Add(await response.Content.ReadFromJsonAsync<TripPlan>());
-        }
+        // var response = await Http.PostAsJsonAsync("api/tripplans", _newPlan);
+        // if (response.IsSuccessStatusCode)
+        // {
+        //     _tripPlans.Add(await response.Content.ReadFromJsonAsync<TripPlan>());
+        // }
     }
 }
