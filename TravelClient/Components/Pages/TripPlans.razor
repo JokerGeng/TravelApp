@@ -1,0 +1,42 @@
+﻿@page "/tripplans"
+@inject HttpClient Http;
+
+<PageTitle>Trip Plans</PageTitle>
+
+<h3>My Trip Plans</h3>
+<ul>
+    @foreach (var plan in _tripPlans)
+    {
+        <li>@plan.Title - @plan.Destination (@plan.StartDate.ToShortDateString() to @plan.EndDate.ToShortDateString())</li>
+    }
+</ul>
+
+<h3>Create New Plan</h3>
+<EditForm Model="_newPlan" OnValidSubmit="AddPlan">
+    <InputText @bind-Value="_newPlan.Title" placeholder="Title" />
+    <InputText @bind-Value="_newPlan.Destination" placeholder="Destination" />
+    <InputDate @bind-Value="_newPlan.StartDate" />
+    <InputDate @bind-Value="_newPlan.EndDate" />
+    <InputText @bind-Value="_newPlan.Transportation" placeholder="Transportation" />
+    <InputText @bind-Value="_newPlan.Accommodation" placeholder="Accommodation" />
+    <button type="submit">Add Plan</button>
+</EditForm>
+
+@code {
+    private List<TripPlan> _tripPlans = new List<TripPlan>();
+    private TripPlan _newPlan = new TripPlan();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // _tripPlans = await Http.GetFromJsonAsync<List<TripPlan>>("api/tripplans");
+    }
+
+    private async Task AddPlan()
+    {
+        // var response = await Http.PostAsJsonAsync("api/tripplans", _newPlan);
+        // if (response.IsSuccessStatusCode)
+        // {
+        //     _tripPlans.Add(await response.Content.ReadFromJsonAsync<TripPlan>());
+        // }
+    }
+}
