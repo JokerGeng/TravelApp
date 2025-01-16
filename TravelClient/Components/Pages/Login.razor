@@ -2,6 +2,7 @@
 
 @using System.ComponentModel.DataAnnotations
 @inject NavigationManager Navigation
+@inject IAppSevice Appservice
 <div class="login-container">
     <h2>Welcome Back!</h2>
     <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
@@ -14,7 +15,10 @@
             <InputText @bind-Value="loginModel.Password" placeholder="Password" class="input" type="password" />
             <ValidationMessage For="@(()=>loginModel.Password)" />
         </div>
-        <button type="submit" class="button">Login</button>
+        <button type="submit" class="button">
+            <span class="@_spinnerClass" role="status" aria-hidden="true" />
+            Login
+        </button>
     </EditForm>
     <p>
         Don't have an account?
@@ -25,10 +29,26 @@
 </div>
 
 @code {
-    private LoginModel loginModel = new LoginModel();
-
+    private LoginDto loginModel = new LoginDto();
+    private string _spinnerClass = "";
     private async Task HandleLogin()
     {
+        _spinnerClass = "spinner-border spinner-border-sm";
+        // await Task.Delay(2 * 1000);
+        var response = await Appservice.AuthenticateUser(loginModel);
+
+        if (!string.IsNullOrWhiteSpace(response))
+        {
+            await App.Current.MainPage.DisplayAlert("Success", "Valid email and passeord!","Ok");
+        }
+        else
+        {
+            await App.Current.MainPage.DisplayAlert("Error", "Invalid email or passeord!", "Ok");
+        }
+
+
+        _spinnerClass = "";
+        this.StateHasChanged();
         // Perform login logic here
         // For example, call an API to authenticate the user
         var isAuthenticated = true; // Placeholder for actual authentication logic
@@ -41,14 +61,6 @@
         {
             // Show error message
         }
-    }
-
-    private class LoginModel
-    {
-        [Required]
-        public string Email { get; set; } = string.Empty;
-        [Required]
-        public string Password { get; set; } = string.Empty;
     }
 }
 

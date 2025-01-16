@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using TravelApp.Models;
 
 namespace TravelClient
 {
@@ -25,6 +26,7 @@ namespace TravelClient
                 client.BaseAddress = new Uri("http://localhost:5024");
             });
             builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("DefaultClient"));
+            builder.Services.AddSingleton<IAppSevice, AppService>();
             return builder.Build();
         }
     }
