@@ -1,6 +1,9 @@
-﻿@page "/"
+﻿@page "/login"
 
 @using System.ComponentModel.DataAnnotations
+@using System.IdentityModel.Tokens.Jwt
+@using System.Security.Claims
+@using Newtonsoft.Json
 @inject NavigationManager Navigation
 @inject IAppSevice Appservice
 <div class="login-container">
@@ -34,12 +37,25 @@
     private async Task HandleLogin()
     {
         _spinnerClass = "spinner-border spinner-border-sm";
-        // await Task.Delay(2 * 1000);
         var response = await Appservice.AuthenticateUser(loginModel);
 
         if (!string.IsNullOrWhiteSpace(response))
         {
-            await App.Current.MainPage.DisplayAlert("Success", "Valid email and passeord!","Ok");
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(response) as JwtSecurityToken;
+
+            var userId = jsonToken.Claims.FirstOrDefault(f => f.Type == JwtRegisteredClaimNames.NameId).Value;
+            var name = jsonToken.Claims.FirstOrDefault(f => f.Type == JwtRegisteredClaimNames.Name).Value;
+            var email = loginModel.Email;
+
+            var userDetail = new UserDetail() { Name = name, UserId = userId, Email = email, Token = response };
+
+            var userDetalStr = JsonConvert.SerializeObject(userDetail);
+
+            Setting.UserDetail = userDetail;
+            await SecureStorage.SetAsync(nameof(Setting.UserDetail), userDetalStr);
+
+            Navigation.NavigateTo("/mainView");
         }
         else
         {

@@ -27,6 +27,7 @@ namespace TravelClient
             });
             builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("DefaultClient"));
             builder.Services.AddSingleton<IAppSevice, AppService>();
+            builder.Services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
             return builder.Build();
         }
     }

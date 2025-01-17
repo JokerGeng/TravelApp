@@ -10,10 +10,10 @@ namespace TravelApp.Models
     public class User
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required, MaxLength(50)]
-        public string Username { get; set; }
+        public string Name { get; set; }
 
         [Required, EmailAddress]
         public string Email { get; set; }
@@ -21,7 +21,6 @@ namespace TravelApp.Models
         [Required]
         public string PasswordHash { get; set; } // Password stored as a hash for security
 
-        public string Role { get; set; } = "User"; // Default role
         public DateTime CreatedAt { get; set; }
         public object Phone { get; set; }
         public bool IsActive { get; set; }
