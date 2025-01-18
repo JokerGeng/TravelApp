@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TravelApp.Models;
+using System.Security.Cryptography;
+using System.Text;
+using TravelModel;
 
-namespace TravelApp.Controllers
+namespace TravelServer.Controllers
 {
     [ApiController]
     [Route("api/auth")]
@@ -18,9 +14,9 @@ namespace TravelApp.Controllers
         private readonly ApplicationDbContext _dbContext;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-        public AuthController(ApplicationDbContext dbContext, IJwtTokenGenerator jwtTokenService)
+        public AuthController(/*ApplicationDbContext dbContext,*/ IJwtTokenGenerator jwtTokenService)
         {
-            _dbContext = dbContext;
+            //_dbContext = dbContext;
             _jwtTokenGenerator = jwtTokenService;
         }
 
@@ -28,18 +24,18 @@ namespace TravelApp.Controllers
         [HttpPost("register-email")]
         public async Task<IActionResult> RegisterWithEmail([FromBody] RegisterEmailRequest request)
         {
-            if (await _dbContext.Users.AnyAsync(u => u.Email == request.Email))
-                return BadRequest("Email is already in use.");
+            //if (await _dbContext.Users.AnyAsync(u => u.Email == request.Email))
+            //    return BadRequest("Email is already in use.");
 
-            var user = new User
-            {
-                Email = request.Email,
-                PasswordHash = HashPassword(request.Password),
-                CreatedAt = DateTime.UtcNow
-            };
+            //var user = new User
+            //{
+            //    Email = request.Email,
+            //    PasswordHash = HashPassword(request.Password),
+            //    CreatedAt = DateTime.UtcNow
+            //};
 
-            _dbContext.Users.Add(user);
-            await _dbContext.SaveChangesAsync();
+            //_dbContext.Users.Add(user);
+            //await _dbContext.SaveChangesAsync();
 
             return Ok("User registered successfully.");
         }

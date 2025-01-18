@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace TravelApp.Models
+namespace TravelModel
 {
     public class ApplicationDbContext: DbContext
     {

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelApp.Models
+namespace TravelModel
 {
     public class APIs
     {
         public const string AuthenticateUser= "";
-        public const string RegisterUser= "";
+        public const string RegisterUser= "/api/auth/register-email";
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelApp.Models
+namespace TravelModel
 {
-    public class Setting
+    public interface IJwtTokenGenerator
     {
-        public static UserDetail UserDetail { get; set; }
+        string GenerateToken(User user);
     }
 }

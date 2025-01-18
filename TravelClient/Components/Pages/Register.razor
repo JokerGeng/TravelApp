@@ -1,5 +1,6 @@
 ﻿@page "/register"
 @using System.ComponentModel.DataAnnotations
+@inject IAppSevice Appservice
 @inject HttpClient Http;
 
 <h3>Register</h3>
@@ -11,8 +12,8 @@
             <ValidationMessage For="@(()=>registrationModel.Email)" />
         </div>
         <div class="form-group">
-            <InputText @bind-Value="registrationModel.Email" placeholder="Email Address" class="input" type=email />
-            <ValidationMessage For="@(()=>registrationModel.Email)" />
+            <InputText @bind-Value="registrationModel.Password" placeholder="Password" class="input" type=password />
+            <ValidationMessage For="@(()=>registrationModel.Password)" />
         </div>
         <div class="mt-2 form-group">
             <div class="d-flex flex-row">
@@ -46,16 +47,25 @@
     {
         try
         {
-            Http.Timeout = new TimeSpan(0, 0, 5);
-            var response = await Http.PostAsJsonAsync("api/auth/register-email", registrationModel);
-            if (response.IsSuccessStatusCode)
+            // Http.Timeout = new TimeSpan(0, 0, 5);
+            // var response = await Http.PostAsJsonAsync("api/auth/register-email", registrationModel);
+            // if (response.IsSuccessStatusCode)
+            // {
+            //     var token = await response.Content.ReadAsStringAsync();
+            //     // Handle successful registration
+            // }
+            // else
+            // {
+            //     errorMessage = "Register error!";
+            // }
+            var response = await Appservice.RegisterUser(registrationModel);
+            if(response.IsSuccess)
             {
-                var token = await response.Content.ReadAsStringAsync();
-                // Handle successful registration
+
             }
             else
             {
-                errorMessage = "Register error!";
+                await App.Current.MainPage.DisplayAlert("Error", response.ErrorMessage, "Ok");
             }
         }
         catch (Exception ex)

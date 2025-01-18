@@ -4,9 +4,9 @@
 
 /TravelClient/bin/
 /TravelClient/obj/
-/TravelAppServer/obj/
-/TravelAppServer/bin/
-/TravelApp.Models/bin/
-/TravelApp.Models/obj/
+/TravelServer/obj/
+/TravelServer/bin/
+/TravelModel/bin/
+/TravelModel/obj/
 /.vs/
 /TravelApp.slnLaunch.user

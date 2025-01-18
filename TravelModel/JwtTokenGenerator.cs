@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelApp.Models
+namespace TravelModel
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {

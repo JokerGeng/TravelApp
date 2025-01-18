@@ -2,11 +2,11 @@
 using Newtonsoft.Json;
 using System.Text;
 
-namespace TravelApp.Models
+namespace TravelModel
 {
     public class AppService : IAppSevice
     {
-        private string _baseUrl = "";
+        private string _baseUrl = "http://localhost:5033";
         public async Task<string> AuthenticateUser(LoginDto loginModel)
         {
             var returnStr = string.Empty;
@@ -40,6 +40,7 @@ namespace TravelApp.Models
                 var response = await client.PostAsync(url, new StringContent(serlizeStr, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode == true)
                 {
+                    returnStr = await response.Content.ReadAsStringAsync();
                     isSuccess = true;
                 }
                 else
@@ -49,7 +50,7 @@ namespace TravelApp.Models
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                returnStr = ex.Message;
             }
             return (isSuccess, returnStr);
         }
