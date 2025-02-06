@@ -13,6 +13,7 @@ namespace TravelModel
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
         private readonly IConfiguration _configuration;
+        private readonly JwtSecurityTokenHandler _tokenHandler = new ();
 
         public JwtTokenGenerator(IConfiguration configuration)
         {
@@ -37,7 +38,7 @@ namespace TravelModel
                 expires: DateTime.Now.AddHours(1),
                 signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return _tokenHandler.WriteToken(token);
         }
     }
 }
