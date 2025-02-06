@@ -13,37 +13,21 @@ Loading...
 @code {
 	protected async override Task OnInitializedAsync()
 	{
-		try
+		var userDetailStr = await SecureStorage.GetAsync(nameof(Setting.UserDetail));
+
+		if (!string.IsNullOrWhiteSpace(userDetailStr))
 		{
-			var userDetailStr = await SecureStorage.GetAsync(nameof(Setting.UserDetail));
+			var userDetal = JsonConvert.DeserializeObject<UserDetail>(userDetailStr);
 
-			if (!string.IsNullOrWhiteSpace(userDetailStr))
+			var handler = new JwtSecurityTokenHandler();
+			var jsonToken = handler.ReadToken(userDetal.Token) as JwtSecurityToken;
+
+			if (jsonToken.ValidTo > DateTime.Now)
 			{
-				var userDetal = JsonConvert.DeserializeObject<UserDetail>(userDetailStr);
+				Navigation.NavigateTo("/mainView");
 
-				var handler = new JwtSecurityTokenHandler();
-				var jsonToken = handler.ReadToken(userDetal.Token) as JwtSecurityToken;
-
-				if (jsonToken.ValidTo < DateTime.Now)
-				{
-					Navigation.NavigateTo("/login");
-
-				}
-				else
-				{
-					Setting.UserDetail = userDetal;
-					Navigation.NavigateTo("/mainView");
-				}
-			}
-			else
-			{
-				Navigation.NavigateTo("/login");
 			}
 		}
-		catch (Exception ex)
-		{
-			Navigation.NavigateTo("/login");
-		}
-
+		Navigation.NavigateTo("/login");
 	}
 }

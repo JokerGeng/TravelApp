@@ -21,11 +21,11 @@ namespace TravelClient
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
-            builder.Services.AddHttpClient("DefaultClient", client =>
-            {
-                client.BaseAddress = new Uri("http://localhost:5033");
-            });
-            builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("DefaultClient"));
+            //builder.Services.AddHttpClient("DefaultClient", client =>
+            //{
+            //    client.BaseAddress = new Uri("http://localhost:5033");
+            //});
+            //builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("DefaultClient"));
             builder.Services.AddSingleton<IAppSevice, AppService>();
             return builder.Build();
         }
