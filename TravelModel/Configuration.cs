@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,28 @@ namespace TravelModel
 {
     public class Configuration : IConfiguration
     {
-        public string? this[string key] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        ConcurrentDictionary<string, string> _configuration=new ConcurrentDictionary<string, string>();
+
+        public Configuration()
+        {
+            _configuration.TryAdd("Jwt:Key", "your-256-bit-secret");
+            _configuration.TryAdd("Jwt:Issuer", "shitao.geng");
+            _configuration.TryAdd("Jwt:Audience", "TravelClient");
+        }
+        public string? this[string key]
+        {
+            get
+            {
+                string outValue;
+                _configuration.TryGetValue(key,out outValue);
+                return outValue;
+            }
+            set
+            {
+                _configuration[key] = value;
+            }
+        }
+
 
         public IEnumerable<IConfigurationSection> GetChildren()
         {

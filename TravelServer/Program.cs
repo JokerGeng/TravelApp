@@ -14,6 +14,7 @@ namespace TravelServer
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
+            builder.Services.AddSingleton<IConfiguration , Configuration>();
             builder.Services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
             builder.Services.AddRateLimiter(options =>
             {
